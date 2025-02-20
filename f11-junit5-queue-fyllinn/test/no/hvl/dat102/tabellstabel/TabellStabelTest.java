@@ -1,5 +1,6 @@
 package no.hvl.dat102.tabellstabel;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,7 +19,15 @@ class TabellStabelTest {
 
 	@BeforeEach
 	void nullstill() {
-		//TODO
+		stabel0 = new TabellStabel<String>();
+		
+		stabel1 = new TabellStabel<String>();
+		stabel1.push("eple");
+		
+		stabel2 = new TabellStabel<String>();
+		stabel2.push("potet");
+		stabel2.push("gulrot");
+		
 	}
 	
 	/*
@@ -37,32 +46,40 @@ class TabellStabelTest {
 	
 	@Test
 	void enNyStabelSkalVaereTom() {
-		//TODO
+		assertTrue(stabel0.isEmpty());
 	}
 	
 	@Test
 	void enStabelMedEttEllerFlereElementerSkalIkkeVaereTom() {
-		//TODO
+		assertFalse(stabel1.isEmpty());
 	}
 	
 	@Test
 	void pushSkalLeggeElementetPaaToppenAvStabelen() {
-		//TODO
+		
+		stabel0.push("forste");	//Tester at neste element legger seg på oppen av første
+		stabel0.push("avokado");
+		
+		assertEquals("avokado",stabel0.peek());
 	}
 	
 	@Test
 	void peekPaaTomStabelSkalGiEmptyStackException() {
-		//TODO
+		assertThrows(EmptyStackException.class, () -> stabel0.peek());
 	}
 	
 	@Test
 	void peekPaaIkkeTomStabelSkalReturnereToppelementet() {
-		//TODO
+		
+		assertEquals("eple",stabel1.peek());
+		assertEquals("gulrot",stabel2.peek());
 	}
 	
 	@Test
 	void peekPaaIkkeTomStabelSkalIkkeEndreStabelensInnhold() {
-		//TODO
+		
+		assertEquals("eple",stabel1.peek());
+		assertEquals("eple",stabel1.peek());
 	}
 	
 	@Test
